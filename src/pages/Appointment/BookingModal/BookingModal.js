@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -6,6 +6,7 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import useAuth from '../../../hooks/useAuth';
 
 
 const style = {
@@ -20,11 +21,47 @@ const style = {
     p: 4,
 };
 
-const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
+const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBookingSuccess }) => {
+
     const { name, time, } = booking
+    const { user } = useAuth()
+    const initializeInfo = { patientsName: user.displayName, email: user.email, phone: '' }
+    const [bookingInfo, setBookingInfo] = useState(initializeInfo)
+
+
+    const handleBlur = e => {
+        const field = e.target.name
+        const value = e.target.value
+        const newInfo = { ...bookingInfo }
+        newInfo[field] = value
+        console.log(newInfo)
+        setBookingInfo(newInfo)
+    }
     const hundleBookingSubmit = (e) => {
-        alert('submit successfully')
-        handleBookingClose()
+        const appointment = {
+            ...bookingInfo,
+            serviceName: name,
+            // name: user.email,
+            time,
+            date: date.toLocaleDateString()
+        }
+        // console.log(appointment)
+        fetch('http://localhost:5000/appointments', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(appointment)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.insertedId) {
+                    setBookingSuccess(true)
+                    handleBookingClose()
+                }
+            })
+
         e.preventDefault()
     }
 
@@ -58,23 +95,28 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
                         />
                         <TextField
                             sx={{ width: '90%', m: 1 }}
-
+                            name="patientsName"
+                            onBlur={handleBlur}
                             id="outlined-size-small"
-                            defaultValue='Your name'
+                            defaultValue={user.displayName}
+                            size="small"
+                        />
+
+                        <TextField
+                            sx={{ width: '90%', m: 1 }}
+                            name="email"
+
+                            onBlur={handleBlur}
+                            id="outlined-size-small"
+                            defaultValue={user.email}
                             size="small"
                         />
                         <TextField
                             sx={{ width: '90%', m: 1 }}
-
-                            id="outlined-size-small"
-                            defaultValue='Your Email'
-                            size="small"
-                        />
-                        <TextField
-                            sx={{ width: '90%', m: 1 }}
-
+                            onBlur={handleBlur}
                             id="outlined-size-small"
                             defaultValue='phone number'
+                            name="phone"
                             size="small"
                         />
                         <TextField
@@ -84,7 +126,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
                             defaultValue={date.toDateString()}
                             size="small"
                         />
-                        <Button type="submit" variant="contained">Contained</Button>
+                        <Button type="submit" variant="contained">BookingSubmit</Button>
 
                     </form>
                 </Box>

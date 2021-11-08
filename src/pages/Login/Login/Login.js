@@ -8,7 +8,7 @@ import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
     const [loginData, SetLoginData] = useState({})
-    const { user, loginUser, isLoading } = useAuth()
+    const { user, loginUser, isLoading, signWithGoogle } = useAuth()
     const location = useLocation()
     const history = useHistory()
 
@@ -26,6 +26,9 @@ const Login = () => {
         loginUser(loginData.email, loginData.password, location, history)
         e.preventDefault()
     }
+    const handleGoogleSignIn = () => {
+        signWithGoogle(location, history)
+    }
     return (
         <Container>
             <Grid>
@@ -41,14 +44,14 @@ const Login = () => {
                                 label="User Name"
 
                                 name="email"
-                                onChange={handleOnChange}
+                                onBlur={handleOnChange}
                                 variant="standard" />
                             <TextField
                                 sx={{ width: '75%', m: 1 }}
                                 id="standard-basic"
                                 label="User Password"
                                 name="password"
-                                onChange={handleOnChange}
+                                onBlur={handleOnChange}
                                 variant="standard"
                                 type="password"
                             />
@@ -70,7 +73,8 @@ const Login = () => {
                             {isLoading && <CircularProgress color="success" />
                             }
                             {user?.email && <Alert severity="success">user created  successfully </Alert>}
-
+                            <p>----------------------------------------------------------------</p>
+                            <Button onClick={handleGoogleSignIn} variant="contained" style={{ color: 'success' }}>google sign in</Button>
                         </form>
                     </Grid>
                     <Grid item xs={12} md={6}>
