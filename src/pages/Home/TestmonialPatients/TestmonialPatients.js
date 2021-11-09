@@ -1,5 +1,5 @@
 import { Container, Grid, Typography } from '@mui/material';
-import { Box, textAlign } from '@mui/system';
+import { Box } from '@mui/system';
 import React from 'react';
 import peopl1 from '../../../images/people-1.png'
 import peopl2 from '../../../images/people-2.png'

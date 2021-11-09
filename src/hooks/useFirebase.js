@@ -3,7 +3,6 @@ import { useState } from "react"
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut, onAuthStateChanged, getIdToken, updateProfile } from "firebase/auth";
 import { useEffect } from "react";
 import initializeAuthentication from "../pages/Login/Firebase/firebase.initialize";
-import { id } from "date-fns/locale";
 initializeAuthentication()
 
 
@@ -96,7 +95,7 @@ const useFirebase = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://aqueous-sea-73730.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -114,7 +113,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName }
-        fetch('http://localhost:5000/users', {
+        fetch('https://aqueous-sea-73730.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'

@@ -15,7 +15,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Button, Grid } from '@mui/material';
+import { Button } from '@mui/material';
 import useAuth from '../../../hooks/useAuth'
 
 import DashboardHome from '../DashboardHome/DashboardHome';
@@ -24,7 +24,7 @@ import {
     Switch,
     Route,
     Link,
-    useParams,
+
     useRouteMatch
 } from "react-router-dom";
 import MakeAdmin from '../MakeAdmin/MakeAdmin';

@@ -46,7 +46,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
             date: date.toLocaleDateString()
         }
         // console.log(appointment)
-        fetch('http://localhost:5000/appointments', {
+        fetch('https://aqueous-sea-73730.herokuapp.com/appointments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
