@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { Alert, Button, Container, Typography } from '@material-ui/core';
+import { Alert, Button, Typography } from '@material-ui/core';
 
 import Grid from '@mui/material/Grid';
 import login from '../../../images/login.png'
@@ -32,79 +32,79 @@ const Register = () => {
         e.preventDefault()
     }
     return (
-        <Container>
-            <Grid>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
-                        <Typography variant="body1" gutterBottom>
-                            Register
-                        </Typography>
-                        {!isLoading &&
-                            < form onSubmit={handleLoginSubmit}>
-                                <TextField
-                                    sx={{ width: '75%', m: 1 }}
-                                    id="standard-basic"
-                                    label="User Name"
 
-                                    name="name"
+        <Grid>
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                    <Typography variant="body1" gutterBottom>
+                        Register
+                    </Typography>
+                    {!isLoading &&
+                        < form onSubmit={handleLoginSubmit}>
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="User Name"
 
-                                    onBlur={handleOnBlur}
-                                    variant="standard" />
-                                <TextField
-                                    sx={{ width: '75%', m: 1 }}
-                                    id="standard-basic"
-                                    label="User email"
+                                name="name"
 
-                                    name="email"
-                                    type="email"
-                                    onBlur={handleOnBlur}
-                                    variant="standard" />
-                                <TextField
-                                    sx={{ width: '75%', m: 1 }}
-                                    id="standard-basic"
-                                    label="User Password"
-                                    name="password"
-                                    onBlur={handleOnBlur}
-                                    variant="standard"
-                                    type="password"
-                                />
-                                <TextField
-                                    sx={{ width: '75%', m: 1 }}
-                                    id="standard-basic"
-                                    label="Retype your Password"
-                                    name="password2"
-                                    onBlur={handleOnBlur}
-                                    variant="standard"
-                                    type="password"
-                                />
+                                onBlur={handleOnBlur}
+                                variant="standard" />
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="User email"
 
-                                <Button
-                                    type="submit"
-                                    sx={{ width: '75%', m: 1 }}
-                                    variant="contained">
-                                    Register
+                                name="email"
+                                type="email"
+                                onBlur={handleOnBlur}
+                                variant="standard" />
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="User Password"
+                                name="password"
+                                onBlur={handleOnBlur}
+                                variant="standard"
+                                type="password"
+                            />
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="Retype your Password"
+                                name="password2"
+                                onBlur={handleOnBlur}
+                                variant="standard"
+                                type="password"
+                            />
 
-                                </Button>
-                                <NavLink to="/login"
+                            <Button
+                                type="submit"
+                                sx={{ width: '75%', m: 1 }}
+                                variant="contained">
+                                Register
 
-                                    style={{ textDecoration: 'none' }}
-                                    sx={{ width: '75%', m: 1 }}
-                                ><Button variant="text" style={{ color: 'red' }}>Already Register?? please login</Button>
-                                </NavLink>
+                            </Button>
+                            <NavLink to="/login"
+
+                                style={{ textDecoration: 'none' }}
+                                sx={{ width: '75%', m: 1 }}
+                            ><Button variant="text" style={{ color: 'red' }}>Already Register?? please login</Button>
+                            </NavLink>
 
 
-                            </form>}
-                        {isLoading && <CircularProgress color="success" />
-                        }
-                        {user?.email && <Alert severity="success">user created  successfully </Alert>}
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <img src={login} style={{ width: '100%' }} alt="" />
-                    </Grid>
-
+                        </form>}
+                    {isLoading && <CircularProgress color="success" />
+                    }
+                    {user?.email && <Alert severity="success">user created  successfully </Alert>}
                 </Grid>
+                <Grid item xs={12} md={6}>
+                    <img src={login} style={{ width: '100%' }} alt="" />
+                </Grid>
+
             </Grid>
-        </Container >
+        </Grid>
+
     );
 };
 

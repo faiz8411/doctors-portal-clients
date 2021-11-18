@@ -3,6 +3,7 @@ import Navigation from '../../Shared/Navigation/Navigation';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import Banner from '../Banner/Banner';
 import DentalCheck from '../DentalCheck/DentalCheck';
+import Doctors from '../Doctors/Doctors';
 import Services from '../Services/Services';
 import TestmonialPatients from '../TestmonialPatients/TestmonialPatients';
 import Blogs from './Blogs/Blogs';
@@ -16,7 +17,8 @@ const Home = () => {
             <DentalCheck></DentalCheck>
             <AppointmentBanner></AppointmentBanner>
             <TestmonialPatients></TestmonialPatients>
-            <Blogs></Blogs>
+            <Doctors></Doctors>
+            {/* <Blogs></Blogs> */}
 
         </div>
     );
